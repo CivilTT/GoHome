@@ -15,29 +15,6 @@ Run as a web app:
 ```
 uv run flet run --web
 ```
-
-### Poetry
-
-Install dependencies from `pyproject.toml`:
-
-```
-poetry install
-```
-
-Run as a desktop app:
-
-```
-poetry run flet run
-```
-
-Run as a web app:
-
-```
-poetry run flet run --web
-```
-
-For more details on running the app, refer to the [Getting Started Guide](https://flet.dev/docs/getting-started/).
-
 ## Build the app
 
 ### Android
@@ -79,3 +56,17 @@ flet build windows -v
 ```
 
 For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
+
+
+## Test codes
+
+```
+uv run python -m pytest
+```
+
+You have to write a full path to import a target file
+
+```diff
+- from back.source.sample.sample import Calculator
++ from src.back.source.sample.sample import Calculator
+```
