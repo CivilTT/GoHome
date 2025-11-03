@@ -10,6 +10,7 @@ authors = [
 dependencies = [
   "flet==0.28.3",
   "pydantic>=2.12.3",
+  "returns>=0.23.0",
 ]
 
 [tool.flet]
