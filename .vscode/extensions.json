@@ -1,5 +1,8 @@
 {
   "recommendations": [
-    "charliermarsh.ruff"
+    "charliermarsh.ruff",
+    "mhutchie.git-graph",
+    "seatonjiang.gitmoji-vscode",
+    "visualstudioexptteam.vscodeintellicode"
   ]
 }
