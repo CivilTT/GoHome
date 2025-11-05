@@ -61,12 +61,5 @@ For more details on building Windows package, refer to the [Windows Packaging Gu
 ## Test codes
 
 ```
-uv run python -m pytest
-```
-
-You have to write a full path to import a target file
-
-```diff
-- from back.source.sample.sample import Calculator
-+ from src.back.source.sample.sample import Calculator
+uv run pytest
 ```

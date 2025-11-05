@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.back.source.sample.sample import Calculator, add, divide
+from back.source.sample.sample import Calculator, add, divide
 
 
 def test_add():
