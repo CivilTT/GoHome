@@ -13,10 +13,10 @@ class Api(BaseModel):
   def is_using_mock_api() -> bool:
     return USE_MOCK_API
 
-  Train = TrainApi(USE_MOCK_API)
-  OuterLink = OuterLinkApi(USE_MOCK_API)
-  Timetable = TimetableApi(USE_MOCK_API)
-  Ui = UiApi(USE_MOCK_API)
+  Train = TrainApi()
+  OuterLink = OuterLinkApi()
+  Timetable = TimetableApi()
+  Ui = UiApi()
 
 
 API = Api()
