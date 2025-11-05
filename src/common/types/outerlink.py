@@ -13,4 +13,4 @@ class OuterLink(BaseModel):
 
   id: OuterLinkId
   name: str
-  url: AnyUrl
+  url: str | AnyUrl
