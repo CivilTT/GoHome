@@ -12,4 +12,3 @@ def test_links():
   links = get_links()
   assert is_successful(links)
   assert len(links.unwrap()) == 2
-

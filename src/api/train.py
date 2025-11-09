@@ -9,14 +9,18 @@ from common.types.train import LineInfo, NextTrain, TrainInfo
 
 class TrainApi(BaseModel):
   @staticmethod
-  async def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception]:
+  async def send_next_train(
+    func: Callable[[NextTrain], None],
+  ) -> Result[None, Exception]:
     if USE_MOCK_API:
       return Failure(NotImplementedError())
     else:
       return Failure(NotImplementedError())
 
   @staticmethod
-  async def send_train_info(func: Callable[[TrainInfo], None]) -> Result[None, Exception]:
+  async def send_train_info(
+    func: Callable[[TrainInfo], None],
+  ) -> Result[None, Exception]:
     if USE_MOCK_API:
       return Failure(NotImplementedError())
     else:
