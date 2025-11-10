@@ -1,6 +1,6 @@
 from returns.pipeline import is_successful
 
-from mock.outerlink import get_links
+from mocks.outerlink import get_links
 
 
 def test_links():
