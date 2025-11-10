@@ -1,13 +1,13 @@
 from random import random
 
 from returns.pipeline import is_successful
-from returns.result import Failure, Success
+from returns.result import Failure, Result, Success
 
 from common.scripts.types.parser import safe_parse
 from common.types.outerlink import OuterLink
 
 
-def get_links():
+def get_links() -> Result[list[OuterLink], ValueError]:
   samples = [
     {"name": "Google", "url": "https://www.google.com"},
     {"name": "Yahoo", "url": "https://www.yahoo.co.jp"},

@@ -14,7 +14,7 @@ class OuterLinkApi(BaseModel):
     TODO: エラーの種類を特定できる場合はExceptionを書き換える
     """
     if USE_MOCK_API:
-      from mock.outerlink import get_links
+      from mocks.outerlink import get_links
 
       return get_links()
     else:
