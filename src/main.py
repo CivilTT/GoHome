@@ -5,7 +5,7 @@ import flet as ft
 from front.page.helloPage import hello_page
 
 
-def config_window(page: ft.Page):
+def config_window(page: ft.Page) -> None:
   # tkinterを使って画面解像度を取得
   root = tk.Tk()
   screen_width = root.winfo_screenwidth()  # 画面の幅
@@ -37,7 +37,7 @@ def config_window(page: ft.Page):
   page.window.left = window_left
 
 
-def main(page: ft.Page):
+def main(page: ft.Page) -> None:
   config_window(page)
   hello_page(page)
 

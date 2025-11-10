@@ -1,10 +1,10 @@
 import flet as ft
 
 
-def hello_page(page: ft.Page):
+def hello_page(page: ft.Page) -> None:
   counter = ft.Text("0", size=50, data=0)
 
-  def increment_click(e):
+  def increment_click(e: ft.ControlEvent) -> None:
     counter.data += 1  # type: ignore
     counter.value = str(counter.data)
     counter.update()
