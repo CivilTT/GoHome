@@ -34,6 +34,7 @@ path = "src"
 [tool.uv]
 dev-dependencies = [
     "flet[all]==0.28.3",
+    "mypy>=1.18.2",
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
     "ruff>=0.14.3",
@@ -86,3 +87,23 @@ keep-runtime-typing = true
 [tool.pytest.ini_options]
 pythonpath = "src"
 testpaths = ["tests",]
+
+[tool.mypy]
+# 基本設定
+# warn_return_any = true
+# warn_unused_configs = true
+# disallow_untyped_defs = true
+# disallow_incomplete_defs = true
+# check_untyped_defs = true
+# disallow_untyped_decorators = true
+# no_implicit_optional = true
+# warn_redundant_casts = true
+# warn_unused_ignores = true
+# warn_no_return = true
+# warn_unreachable = true
+
+# サードパーティライブラリの型チェック
+ignore_missing_imports = true
+
+# 同一ファイル名のコードを許容
+explicit_package_bases = true
