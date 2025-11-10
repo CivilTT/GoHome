@@ -1,5 +1,3 @@
-from random import random
-
 from returns.pipeline import is_successful
 from returns.result import Failure, Result, Success
 
@@ -13,7 +11,7 @@ def get_links() -> Result[list[OuterLink], ValueError]:
     {"name": "Yahoo", "url": "https://www.yahoo.co.jp"},
     {"name": 3, "url": "not a url"},
   ]
-  sampleIds = [int(random()) for _ in range(len(samples))]
+  sampleIds = list(range(len(samples)))
 
   parsed = [
     safe_parse(OuterLink, id=link_id, **data)
