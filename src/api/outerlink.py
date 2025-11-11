@@ -1,3 +1,5 @@
+from typing import cast
+
 from pydantic import BaseModel
 from returns.result import Failure, Result
 
@@ -14,9 +16,10 @@ class OuterLinkApi(BaseModel):
     TODO: エラーの種類を特定できる場合はExceptionを書き換える
     """
     if USE_MOCK_API:
-      from mock.outerlink import get_links
+      from mocks.outerlink import get_links
 
-      return get_links()
+      # 型定義が複雑でCIがエラーで落ちるため特殊加工
+      return cast(Result[list[OuterLink], Exception], get_links())
     else:
       return Failure(NotImplementedError())
 
