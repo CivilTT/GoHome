@@ -28,7 +28,9 @@ class OuterLinkApi(BaseModel):
     新規追加した状態の一覧を返す
     """
     if USE_MOCK_API:
-      return Failure(NotImplementedError())
+      from mocks.outerlink import set_link
+
+      return set_link(name, url)
     else:
       return Failure(NotImplementedError())
 
@@ -40,6 +42,8 @@ class OuterLinkApi(BaseModel):
     削除後の一覧を返す
     """
     if USE_MOCK_API:
-      return Failure(NotImplementedError())
+      from mocks.outerlink import remove_link
+
+      return remove_link(link_id)
     else:
       return Failure(NotImplementedError())
