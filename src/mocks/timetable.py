@@ -7,7 +7,7 @@ from common.types.timetable import (
 )
 from common.types.train import LineId, TrainType
 
-# In-memory store for timetables
+# 時刻表のインメモリストア
 __timetables: dict[LineId, TimeTable] = {
   1: TimeTable(
     items=[
@@ -26,12 +26,12 @@ __timetables: dict[LineId, TimeTable] = {
 
 def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
   """
-  Mock implementation for getting a timetable.
+  時刻表を取得するためのモック実装
   """
   if line_id in __timetables:
     return Success(__timetables[line_id])
   else:
-    # Return a default or empty timetable if not found
+    # 見つからない場合は、デフォルトまたは空の時刻表を返す
     return Success(TimeTable(items=[]))
 
 
@@ -39,9 +39,9 @@ def set_timetable(
   train_name: str, station_name: str, bound: str, options: TimetableSetterOptions
 ) -> Result[LineId, Exception]:
   """
-  Mock implementation for setting a timetable.
-  This mock will generate a sample timetable based on the options.
-  The train_name, station_name, and bound parameters are ignored in this mock.
+  時刻表を設定するためのモック実装
+  このモックはオプションに基づいてサンプルの時刻表を生成します。
+  train_name, station_name, bound パラメータはこのモックでは無視されます。
   """
   items = []
   if options.enable_local:
@@ -77,7 +77,7 @@ def set_timetable(
 
 def remove_timetable(line_id: LineId) -> Result[None, Exception]:
   """
-  Mock implementation for removing a timetable.
+  時刻表を削除するためのモック実装
   """
   if line_id in __timetables:
     del __timetables[line_id]

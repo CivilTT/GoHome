@@ -6,7 +6,7 @@ from mocks.ui import get_showing, set_showing
 
 def test_get_showing():
   """
-  Test getting the showing components.
+  表示コンポーネントの取得をテストします。
   """
   result = get_showing()
   assert is_successful(result)
@@ -16,28 +16,28 @@ def test_get_showing():
 
 def test_set_showing():
   """
-  Test setting the showing components.
+  表示コンポーネントの設定をテストします。
   """
-  # Get initial components
+  # 初期コンポーネントの取得
   initial_components = get_showing().unwrap()
 
-  # Create new components state
+  # 新しいコンポーネントの状態を作成
   new_components_state = ShowingComponents(
     trainInfo=not initial_components.trainInfo,
     timetable=not initial_components.timetable,
     outerlink=not initial_components.outerlink,
   )
 
-  # Set the new state
+  # 新しい状態を設定
   set_result = set_showing(new_components_state)
   assert is_successful(set_result)
 
-  # Get the updated state
+  # 更新された状態を取得
   updated_components_result = get_showing()
   assert is_successful(updated_components_result)
   updated_components = updated_components_result.unwrap()
 
-  # Check if the state was updated
+  # 状態が更新されたかを確認
   assert updated_components.trainInfo == new_components_state.trainInfo
   assert updated_components.timetable == new_components_state.timetable
   assert updated_components.outerlink == new_components_state.outerlink

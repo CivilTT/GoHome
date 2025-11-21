@@ -2,7 +2,7 @@ from returns.result import Result, Success
 
 from common.types.ui import ShowingComponents
 
-# In-memory store for the showing components
+# 表示コンポーネントのインメモリストア
 __showing_components = ShowingComponents(
   timetable=True,
   outerlink=True,
@@ -12,14 +12,14 @@ __showing_components = ShowingComponents(
 
 def get_showing() -> Result[ShowingComponents, Exception]:
   """
-  Mock implementation for getting the showing components.
+  表示コンポーネントを取得するためのモック実装
   """
   return Success(__showing_components)
 
 
 def set_showing(showing: ShowingComponents) -> Result[None, Exception]:
   """
-  Mock implementation for setting the showing components.
+  表示コンポーネントを設定するためのモック実装
   """
   global __showing_components
   __showing_components = showing
