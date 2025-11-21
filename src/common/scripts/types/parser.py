@@ -11,7 +11,7 @@ def safe_parse[T: BaseModel](
   Pydanticによって実装された型定義によって，内容のバリデーションを安全に行う
   """
   try:
-    parsed:T = type_obj.model_validate(kwargs)
+    parsed: T = type_obj.model_validate(kwargs)
     return Success(parsed)
   except ValidationError as e:
     return Failure(e)
