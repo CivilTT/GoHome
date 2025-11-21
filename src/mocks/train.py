@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from returns.result import Result, Success
 
-from common.types.train import LineInfo, NextTrain, TrainInfo
+from common.types.train import InfoLevel, LineInfo, NextTrain, TrainInfo, TrainType
 
 __limit_minute = 10
 
@@ -12,7 +12,7 @@ def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception
   nextTrain = NextTrain(
     departure_time=datetime.now() + timedelta(minutes=10),
     train_name="テスト線",
-    train_type="local",
+    train_type=TrainType.LOCAL,
   )
 
   # フロントエンドに次電車の情報を返す
@@ -23,7 +23,7 @@ def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception
 
 def send_train_info(func: Callable[[TrainInfo], None]) -> Result[None, Exception]:
   sampleInfo = TrainInfo(
-    level="critical",
+    level=InfoLevel.CRITICAL,
     train_name="運転障害テスト線",
     title="テスト用の運転障害が発生しました．",
     description="テスト駅で発生した障害により５分の遅延が発生しています．",
@@ -49,5 +49,6 @@ def get_limit_minute() -> Result[int, Exception]:
 
 
 def set_limit_minute(minute: int) -> Result[None, Exception]:
+  global __limit_minute
   __limit_minute = minute
   return Success(None)

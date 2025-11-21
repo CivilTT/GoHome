@@ -10,7 +10,9 @@ class TimetableApi(BaseModel):
   @staticmethod
   async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
     if USE_MOCK_API:
-      return Failure(NotImplementedError())
+      from mocks.timetable import get_timetable
+
+      return get_timetable(line_id)
     else:
       return Failure(NotImplementedError())
 
@@ -19,13 +21,17 @@ class TimetableApi(BaseModel):
     trian_name: str, statin_name: str, bound: str, options: TimetableSetterOptions
   ) -> Result[LineId, Exception]:
     if USE_MOCK_API:
-      return Failure(NotImplementedError())
+      from mocks.timetable import set_timetable
+
+      return set_timetable(trian_name, statin_name, bound, options)
     else:
       return Failure(NotImplementedError())
 
   @staticmethod
   async def remove_timetable(line_id: LineId) -> Result[None, Exception]:
     if USE_MOCK_API:
-      return Failure(NotImplementedError())
+      from mocks.timetable import remove_timetable
+
+      return remove_timetable(line_id)
     else:
       return Failure(NotImplementedError())

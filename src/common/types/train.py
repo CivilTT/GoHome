@@ -1,10 +1,21 @@
 from datetime import datetime
-from typing import Literal
+from enum import Enum
 
 from pydantic import BaseModel
 
-TrainType = Literal["local", "rapid", "express"]
-InfoLevel = Literal["normal", "warning", "critical"]
+
+class TrainType(str, Enum):
+  LOCAL = "local"
+  RAPID = "rapid"
+  EXPRESS = "express"
+
+
+class InfoLevel(str, Enum):
+  NORMAL = "normal"
+  WARNING = "warning"
+  CRITICAL = "critical"
+
+
 LineId = int
 
 
