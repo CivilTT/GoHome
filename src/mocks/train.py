@@ -9,14 +9,16 @@ __limit_minute = 10
 
 
 async def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception]:
+  departure_time = datetime.now() + timedelta(minutes=10)
   nextTrain = NextTrain(
-    departure_time=datetime.now() + timedelta(minutes=10),
+    departure_time=departure_time,
     train_name="テスト線",
     train_type=TrainType.LOCAL,
   )
 
   # フロントエンドに次電車の情報を返す
-  func(nextTrain)
+  if departure_time - datetime.now() >= timedelta(minutes=__limit_minute):
+    func(nextTrain)
 
   return Success(None)
 

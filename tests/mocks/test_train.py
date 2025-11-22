@@ -17,10 +17,19 @@ async def test_send_next_train():
   def mock_func(train: NextTrain):
     called_with.append(train)
 
+  # limit_minute以上の電車が送信されることを確認する
+  await TEST_API.Train.set_limit_minute(5)
   result = await TEST_API.Train.send_next_train(mock_func)
   assert is_successful(result)
   assert len(called_with) == 1
   assert isinstance(called_with[0], NextTrain)
+
+  # limit_minute以下の電車は送信されないことを確認する
+  called_with.clear()
+  await TEST_API.Train.set_limit_minute(15)
+  result = await TEST_API.Train.send_next_train(mock_func)
+  assert is_successful(result)
+  assert len(called_with) == 0
 
 
 @pytest.mark.asyncio
