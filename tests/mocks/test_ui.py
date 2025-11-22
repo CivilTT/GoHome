@@ -1,25 +1,28 @@
+import pytest
 from returns.pipeline import is_successful
 
 from common.types.ui import ShowingComponents
 from mocks.ui import get_showing, set_showing
 
 
-def test_get_showing():
+@pytest.mark.asyncio
+async def test_get_showing():
   """
   表示コンポーネントの取得をテストします。
   """
-  result = get_showing()
+  result = await get_showing()
   assert is_successful(result)
   components = result.unwrap()
   assert isinstance(components, ShowingComponents)
 
 
-def test_set_showing():
+@pytest.mark.asyncio
+async def test_set_showing():
   """
   表示コンポーネントの設定をテストします。
   """
   # 初期コンポーネントの取得
-  initial_components = get_showing().unwrap()
+  initial_components = (await get_showing()).unwrap()
 
   # 新しいコンポーネントの状態を作成
   new_components_state = ShowingComponents(
@@ -29,11 +32,11 @@ def test_set_showing():
   )
 
   # 新しい状態を設定
-  set_result = set_showing(new_components_state)
+  set_result = await set_showing(new_components_state)
   assert is_successful(set_result)
 
   # 更新された状態を取得
-  updated_components_result = get_showing()
+  updated_components_result = await get_showing()
   assert is_successful(updated_components_result)
   updated_components = updated_components_result.unwrap()
 

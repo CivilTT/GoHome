@@ -24,7 +24,7 @@ __timetables: dict[LineId, TimeTable] = {
 }
 
 
-def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
+async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
   """
   時刻表を取得するためのモック実装
   """
@@ -35,7 +35,7 @@ def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
     return Success(TimeTable(items=[]))
 
 
-def set_timetable(
+async def set_timetable(
   train_name: str, station_name: str, bound: str, options: TimetableSetterOptions
 ) -> Result[LineId, Exception]:
   """
@@ -75,7 +75,7 @@ def set_timetable(
   return Success(new_id)
 
 
-def remove_timetable(line_id: LineId) -> Result[None, Exception]:
+async def remove_timetable(line_id: LineId) -> Result[None, Exception]:
   """
   時刻表を削除するためのモック実装
   """

@@ -9,14 +9,14 @@ __links: list[OuterLink] = [
 ]
 
 
-def get_links() -> Result[list[OuterLink], Exception]:
+async def get_links() -> Result[list[OuterLink], Exception]:
   """
   外部リンクを取得するためのモック実装
   """
   return Success(__links)
 
 
-def set_link(name: str, url: str) -> Result[list[OuterLink], Exception]:
+async def set_link(name: str, url: str) -> Result[list[OuterLink], Exception]:
   """
   外部リンクを設定（追加）するためのモック実装
   """
@@ -26,7 +26,7 @@ def set_link(name: str, url: str) -> Result[list[OuterLink], Exception]:
   return Success(__links)
 
 
-def remove_link(link_id: OuterLinkId) -> Result[list[OuterLink], Exception]:
+async def remove_link(link_id: OuterLinkId) -> Result[list[OuterLink], Exception]:
   """
   外部リンクを削除するためのモック実装
   """

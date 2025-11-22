@@ -8,7 +8,7 @@ from common.types.train import InfoLevel, LineInfo, NextTrain, TrainInfo, TrainT
 __limit_minute = 10
 
 
-def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception]:
+async def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception]:
   nextTrain = NextTrain(
     departure_time=datetime.now() + timedelta(minutes=10),
     train_name="テスト線",
@@ -21,7 +21,7 @@ def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception
   return Success(None)
 
 
-def send_train_info(func: Callable[[TrainInfo], None]) -> Result[None, Exception]:
+async def send_train_info(func: Callable[[TrainInfo], None]) -> Result[None, Exception]:
   sampleInfo = TrainInfo(
     level=InfoLevel.CRITICAL,
     train_name="運転障害テスト線",
@@ -35,7 +35,7 @@ def send_train_info(func: Callable[[TrainInfo], None]) -> Result[None, Exception
   return Success(None)
 
 
-def get_registered_lines() -> Result[list[LineInfo], Exception]:
+async def get_registered_lines() -> Result[list[LineInfo], Exception]:
   lines = [
     LineInfo(line_id=1, line_name="テスト線"),
     LineInfo(line_id=2, line_name="テスト線1"),
@@ -44,11 +44,11 @@ def get_registered_lines() -> Result[list[LineInfo], Exception]:
   return Success(lines)
 
 
-def get_limit_minute() -> Result[int, Exception]:
+async def get_limit_minute() -> Result[int, Exception]:
   return Success(__limit_minute)
 
 
-def set_limit_minute(minute: int) -> Result[None, Exception]:
+async def set_limit_minute(minute: int) -> Result[None, Exception]:
   global __limit_minute
   __limit_minute = minute
   return Success(None)

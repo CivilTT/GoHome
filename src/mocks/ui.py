@@ -10,14 +10,14 @@ __showing_components = ShowingComponents(
 )
 
 
-def get_showing() -> Result[ShowingComponents, Exception]:
+async def get_showing() -> Result[ShowingComponents, Exception]:
   """
   表示コンポーネントを取得するためのモック実装
   """
   return Success(__showing_components)
 
 
-def set_showing(showing: ShowingComponents) -> Result[None, Exception]:
+async def set_showing(showing: ShowingComponents) -> Result[None, Exception]:
   """
   表示コンポーネントを設定するためのモック実装
   """
