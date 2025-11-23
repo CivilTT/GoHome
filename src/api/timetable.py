@@ -15,12 +15,12 @@ class TimetableApi(BaseApi):
       return Failure(NotImplementedError())
 
   async def set_timetable(
-    self, trian_name: str, statin_name: str, bound: str, options: TimetableSetterOptions
+    self, train_name: str, station_name: str, bound: str, options: TimetableSetterOptions
   ) -> Result[LineId, Exception]:
     if self.use_mock_api:
       from mocks.timetable import set_timetable
 
-      return await set_timetable(trian_name, statin_name, bound, options)
+      return await set_timetable(train_name, station_name, bound, options)
     else:
       return Failure(NotImplementedError())
 
