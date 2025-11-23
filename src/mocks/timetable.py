@@ -29,7 +29,7 @@ async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
   時刻表を取得するためのモック実装
   """
   if line_id in _timetables:
-    return Success(_timetables[line_id])
+    return Success(_timetables[line_id].model_copy())
   else:
     # 見つからない場合は、デフォルトまたは空の時刻表を返す
     return Success(TimeTable(items=[]))

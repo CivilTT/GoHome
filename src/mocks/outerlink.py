@@ -13,7 +13,7 @@ async def get_links() -> Result[list[OuterLink], Exception]:
   """
   外部リンクを取得するためのモック実装
   """
-  return Success(_links)
+  return Success(_links.copy())
 
 
 async def set_link(name: str, url: str) -> Result[list[OuterLink], Exception]:
@@ -23,7 +23,7 @@ async def set_link(name: str, url: str) -> Result[list[OuterLink], Exception]:
   new_id = max(link.id for link in _links) + 1 if _links else 1
   new_link = OuterLink(id=new_id, name=name, url=url)
   _links.append(new_link)
-  return Success(_links)
+  return Success(_links.copy())
 
 
 async def remove_link(link_id: OuterLinkId) -> Result[list[OuterLink], Exception]:
@@ -32,4 +32,4 @@ async def remove_link(link_id: OuterLinkId) -> Result[list[OuterLink], Exception
   """
   global _links
   _links = [link for link in _links if link.id != link_id]
-  return Success(_links)
+  return Success(_links.copy())

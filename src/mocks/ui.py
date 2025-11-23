@@ -14,7 +14,7 @@ async def get_showing() -> Result[ShowingComponents, Exception]:
   """
   表示コンポーネントを取得するためのモック実装
   """
-  return Success(_showing_components)
+  return Success(_showing_components.model_copy())
 
 
 async def set_showing(showing: ShowingComponents) -> Result[None, Exception]:

@@ -43,7 +43,7 @@ async def get_registered_lines() -> Result[list[LineInfo], Exception]:
     LineInfo(line_id=2, line_name="テスト線1"),
     LineInfo(line_id=3, line_name="テスト線2"),
   ]
-  return Success(lines)
+  return Success(lines.copy())
 
 
 async def get_limit_minute() -> Result[int, Exception]:
