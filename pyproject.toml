@@ -90,6 +90,7 @@ pythonpath = "src"
 testpaths = ["tests",]
 
 [tool.mypy]
+mypy_path = "src"
 # 基本設定
 strict = true
 warn_unused_ignores = false
