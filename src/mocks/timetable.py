@@ -8,7 +8,7 @@ from common.types.timetable import (
 from common.types.train import LineId, TrainType
 
 # 時刻表のインメモリストア
-__timetables: dict[LineId, TimeTable] = {
+_timetables: dict[LineId, TimeTable] = {
   1: TimeTable(
     items=[
       TimeTableItem(hour=h, minute=m, train_type=TrainType.LOCAL)
@@ -28,8 +28,8 @@ async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
   """
   時刻表を取得するためのモック実装
   """
-  if line_id in __timetables:
-    return Success(__timetables[line_id])
+  if line_id in _timetables:
+    return Success(_timetables[line_id])
   else:
     # 見つからない場合は、デフォルトまたは空の時刻表を返す
     return Success(TimeTable(items=[]))
@@ -70,8 +70,8 @@ async def set_timetable(
     )
 
   new_timetable = TimeTable(items=items)
-  new_id = max(__timetables.keys()) + 1 if __timetables else 1
-  __timetables[new_id] = new_timetable
+  new_id = max(_timetables.keys()) + 1 if _timetables else 1
+  _timetables[new_id] = new_timetable
   return Success(new_id)
 
 
@@ -79,6 +79,6 @@ async def remove_timetable(line_id: LineId) -> Result[None, Exception]:
   """
   時刻表を削除するためのモック実装
   """
-  if line_id in __timetables:
-    del __timetables[line_id]
+  if line_id in _timetables:
+    del _timetables[line_id]
   return Success(None)

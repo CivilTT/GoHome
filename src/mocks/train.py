@@ -5,7 +5,7 @@ from returns.result import Result, Success
 
 from common.types.train import InfoLevel, LineInfo, NextTrain, TrainInfo, TrainType
 
-__limit_minute = 10
+_limit_minute = 10
 
 
 async def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exception]:
@@ -17,7 +17,7 @@ async def send_next_train(func: Callable[[NextTrain], None]) -> Result[None, Exc
   )
 
   # フロントエンドに次電車の情報を返す
-  if departure_time - datetime.now() >= timedelta(minutes=__limit_minute):
+  if departure_time - datetime.now() >= timedelta(minutes=_limit_minute):
     func(nextTrain)
 
   return Success(None)
@@ -47,10 +47,10 @@ async def get_registered_lines() -> Result[list[LineInfo], Exception]:
 
 
 async def get_limit_minute() -> Result[int, Exception]:
-  return Success(__limit_minute)
+  return Success(_limit_minute)
 
 
 async def set_limit_minute(minute: int) -> Result[None, Exception]:
-  global __limit_minute
-  __limit_minute = minute
+  global _limit_minute
+  _limit_minute = minute
   return Success(None)
