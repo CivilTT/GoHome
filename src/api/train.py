@@ -43,7 +43,7 @@ class TrainApi(BaseApi):
     self,
   ) -> Result[int, Exception]:
     """
-    「N分以下の電車は表示しない」に該当するNの値を取得する
+    「N分未満の電車は表示しない」に該当するNの値を取得する
     """
     if self.use_mock_api:
       from mocks.train import get_limit_minute
@@ -54,7 +54,7 @@ class TrainApi(BaseApi):
 
   async def set_limit_minute(self, minute: int) -> Result[None, Exception]:
     """
-    「N分以下の電車は表示しない」に該当するNの値を設定する
+    「N分未満の電車は表示しない」に該当するNの値を設定する
     """
     if self.use_mock_api:
       from mocks.train import set_limit_minute
