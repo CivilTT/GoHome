@@ -31,7 +31,9 @@ class OuterLinkApi(BaseApi):
     else:
       return Failure(NotImplementedError())
 
-  async def remove_link(self, link_id: OuterLinkId) -> Result[list[OuterLink], Exception]:
+  async def remove_link(
+    self, link_id: OuterLinkId
+  ) -> Result[list[OuterLink], Exception]:
     """
     画面上に表示するリンクを削除する
 
