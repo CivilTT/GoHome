@@ -21,10 +21,7 @@ async def test_get_timetable():
 
   # 存在しない時刻表の取得をテスト
   timetable_result = await TEST_API.Timetable.get_timetable(999)
-  assert is_successful(timetable_result)
-  timetable = timetable_result.unwrap()
-  assert timetable is not None
-  assert len(timetable.items) == 0
+  assert not is_successful(timetable_result)
 
 
 @pytest.mark.asyncio
@@ -69,5 +66,4 @@ async def test_remove_timetable():
 
   # なくなったことを確認
   timetable_result = await TEST_API.Timetable.get_timetable(new_line_id)
-  timetable = timetable_result.unwrap()
-  assert len(timetable.items) == 0
+  assert not is_successful(timetable_result)
