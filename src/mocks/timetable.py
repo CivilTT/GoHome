@@ -1,4 +1,4 @@
-from returns.result import Result, Success
+from returns.result import Failure, Result, Success
 
 from common.types.timetable import (
   TimeTable,
@@ -32,7 +32,7 @@ async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
     return Success(_timetables[line_id].model_copy())
   else:
     # 見つからない場合は、デフォルトまたは空の時刻表を返す
-    return Success(TimeTable(items=[]))
+    return Failure(ValueError(f"Timetable (lineID={line_id}) does not found."))
 
 
 async def set_timetable(
