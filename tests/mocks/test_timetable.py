@@ -12,8 +12,16 @@ async def test_get_timetable():
   """
   時刻表の取得をテストします。
   """
+  # テスト用の時刻表を作成
+  options = TimetableSetterOptions(enable_local=True)
+  create_result = await TEST_API.Timetable.set_timetable(
+    "Test Line", "Test Station", "Test Bound", options
+  )
+  assert is_successful(create_result)
+  line_id = create_result.unwrap()
+
   # 既存の時刻表の取得をテスト
-  timetable_result = await TEST_API.Timetable.get_timetable(1)
+  timetable_result = await TEST_API.Timetable.get_timetable(line_id)
   assert is_successful(timetable_result)
   timetable = timetable_result.unwrap()
   assert timetable is not None
