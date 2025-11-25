@@ -1,31 +1,37 @@
-from pydantic import BaseModel
 from returns.result import Failure, Result
 
-from api.api import USE_MOCK_API
+from common.types.api import BaseApi
 from common.types.timetable import TimeTable, TimetableSetterOptions
 from common.types.train import LineId
 
 
-class TimetableApi(BaseModel):
-  @staticmethod
-  async def get_timetable(line_id: LineId) -> Result[TimeTable, Exception]:
-    if USE_MOCK_API:
-      return Failure(NotImplementedError())
+class TimetableApi(BaseApi):
+  async def get_timetable(self, line_id: LineId) -> Result[TimeTable, Exception]:
+    if self.use_mock_api:
+      from mocks.timetable import get_timetable
+
+      return await get_timetable(line_id)
     else:
       return Failure(NotImplementedError())
 
-  @staticmethod
   async def set_timetable(
-    trian_name: str, statin_name: str, bound: str, options: TimetableSetterOptions
+    self,
+    train_name: str,
+    station_name: str,
+    bound: str,
+    options: TimetableSetterOptions,
   ) -> Result[LineId, Exception]:
-    if USE_MOCK_API:
-      return Failure(NotImplementedError())
+    if self.use_mock_api:
+      from mocks.timetable import set_timetable
+
+      return await set_timetable(train_name, station_name, bound, options)
     else:
       return Failure(NotImplementedError())
 
-  @staticmethod
-  async def remove_timetable(line_id: LineId) -> Result[None, Exception]:
-    if USE_MOCK_API:
-      return Failure(NotImplementedError())
+  async def remove_timetable(self, line_id: LineId) -> Result[None, Exception]:
+    if self.use_mock_api:
+      from mocks.timetable import remove_timetable
+
+      return await remove_timetable(line_id)
     else:
       return Failure(NotImplementedError())
